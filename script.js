@@ -1,11 +1,11 @@
 const login = document.getElementById("login");
-const senha = document.getElementById("senha");
-const lista = document.getElementById("listaUsuarios");
+const email = document.getElementById("email");
+
 
 function validar() {
     event.preventDefault();
 
-  if (login.value === "admin" && senha.value === "root") {
+  if (login.value === "admin" && email.value === "root") {
     alert("O login foi efetuado com sucesso!");
     window.location.href = "pag.html";
   } else {
@@ -14,24 +14,24 @@ function validar() {
 }
 
 function adicionar() {
-    event.preventDefault();
-    
-  const nome = document.getElementById("nome").value;
-  const email = document.getElementById("email").value;
+  const nome = document.getElementById("nome");
+  const email = document.getElementById("email");
 
-  if (nome || email === "") {
-    alert('Preencha todos os campos corretamente!');
+  if (nome.value === "" || email.value === "") {
+    alert("Por favor, preencha todos os campos.");
     return;
   }
-  
-  const usuario ={
-    nome: nome,
-    email: email,
-  }
-  const li = document.createElement("li");
-  li.textContent = `Nome: ${usuario.nome} - Email: ${usuario.email}`;
-  lista.appendChild(li);
 
-  document.getElementById("nome").value = "";
-  document.getElementById("email").value = "";
+  const tabela = document.getElementById("tabela");
+  const novaLinha = tabela.insertRow();
+
+  const celulaNome = novaLinha.insertCell(0);
+  const celulaEmail = novaLinha.insertCell(1);
+
+  celulaNome.textContent = nome.value;
+  celulaEmail.textContent = email.value;
+
+  nome.value = "";
+  email.value = ""; 
+  
 }
